@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btm_nav_home"
+        android:title="Home"
+        android:enabled="true"
+        android:icon="@drawable/home_vector"
+        />
+    <item
+        android:id="@+id/btm_nav_history"
+        android:title="History"
+        android:icon="@drawable/history"
+        />
+    <item
+        android:id="@+id/btm_nav_User"
+        android:title="User"
+        android:icon="@drawable/user"
+        />
+</menu>

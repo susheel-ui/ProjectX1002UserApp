@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/circular_placeholder.xml -->
+<!-- This drawable creates the grey circular placeholder for the profile image. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#E0E0E0" />
+</shape>
