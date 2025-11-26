@@ -3,6 +3,8 @@ package com.example.ocx_1002_uapp.Notifications
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.ocx_1002_uapp.R
@@ -18,7 +20,7 @@ object NotificationHelper {
         }
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.guests_icon)
             .setContentTitle(title)
             .setAutoCancel(true)
             .build()

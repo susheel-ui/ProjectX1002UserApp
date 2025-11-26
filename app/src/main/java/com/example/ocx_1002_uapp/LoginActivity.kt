@@ -85,12 +85,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }.invokeOnCompletion {
                     CoroutineScope(Dispatchers.Main).launch {
-//                        val intent = Intent(applicationContext, WebSocketService::class.java)
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                            startForegroundService(intent)
-//                        } else {
-//                            startService(intent)
-//                        }
+                        val intent = Intent(applicationContext, WebSocketService::class.java)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            startForegroundService(intent)
+                        } else {
+                            startService(intent)
+                        }
                         startActivity(Intent(applicationContext, Home_Acitvity::class.java))
                     }
                 }

@@ -28,11 +28,9 @@ class WebSocketService : Service() {
     private lateinit var stompClient: StompClient
     private val compositeDisposable = CompositeDisposable()
     private var ownerId: String? = null
-//    private lateinit var ownerChangeReceiver: BroadcastReceiver
     private var isStompConnected = false // ✅ Prevent duplicate subscriptions
 
-    // ✅ Your WebSocket URL (for AVD)
-    private val serverUrl = "ws://10.0.2.2/ws/websocket"
+    private val serverUrl = "wss://gateguard.cloud/ws"
 
     @SuppressLint("CheckResult", "UnspecifiedRegisterReceiverFlag")
     override fun onCreate() {
@@ -83,18 +81,18 @@ class WebSocketService : Service() {
             val channel = NotificationChannel(
                 channelId,
                 "WebSocket Service",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             nm.createNotificationChannel(channel)
         }
 
-        val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Gate Security")
-            .setContentText("Listening for visitor updates...")
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .build()
+//        val notification = NotificationCompat.Builder(this, channelId)
+//            .setContentTitle("Gate Security")
+//            .setContentText("Listening for visitor updates...")
+//            .setSmallIcon(android.R.drawable.btn_radio)
+//            .build()
 
-        startForeground(1, notification)
+//        startForeground(1, notification)
     }
 
     /** ✅ Simple WebSocket client connection */

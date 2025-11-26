@@ -37,52 +37,151 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/InfoCard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="-40dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:backgroundTint="@color/Primary_Color"-->
+<!--        app:cardCornerRadius="30dp"-->
+<!--        app:cardElevation="15dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/header_title">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/societyNameTV"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:paddingBottom="20dp"-->
+<!--                android:text="Loading.."-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="36dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/flateNumber"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:text="Loading."-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="36sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@id/societyNameTV" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/InfoCard"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="-40dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/Primary_Color"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="15dp"
+        app:cardBackgroundColor="@color/Primary_Color"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <!-- Decorative Background Icon (Optional)
+                 Adds depth without clutter. Tint it white with low alpha. -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:alpha="0.1"
+                android:rotation="-15"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@android:color/white"
+                tools:ignore="ContentDescription" />
+
+            <!-- Section 1: Society Info -->
+            <TextView
+                android:id="@+id/lbl_society"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SOCIETY"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/societyNameTV"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="Loading.."
-                android:textColor="@color/white"
-                android:textSize="36dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                tools:text="Galaxy Heights"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/barrier_vertical"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lbl_society" />
+
+            <!-- Vertical Barrier to prevent text collision if Flat No is long -->
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="flateNumber,lbl_flat" />
+
+            <!-- Section 2: Flat Number -->
+            <!-- Aligned to End (Right) -->
+            <TextView
+                android:id="@+id/lbl_flat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FLAT NO."
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/flateNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="Loading."
-                android:textColor="@color/white"
-                android:textSize="36sp"
+                android:layout_marginTop="4dp"
+                tools:text="A-402"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/societyNameTV" />
+                app:layout_constraintTop_toBottomOf="@id/lbl_flat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:id="@+id/ExtraContainer"

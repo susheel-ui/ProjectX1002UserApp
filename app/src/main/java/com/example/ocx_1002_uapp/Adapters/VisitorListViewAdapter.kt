@@ -22,6 +22,8 @@ class VisitorListViewAdapter(
             binding.tvGuestName.text = guest.guestName
 //            val timeAgoTxt = getTimeAgo(guest.createdAt.toString())
 //            binding.tvTimestamp.text = timeAgoTxt
+            binding.tvGuestType.text = guest.description
+
         }
 
         fun getTimeAgo(createdAt: String): String {
