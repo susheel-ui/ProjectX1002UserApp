@@ -30,11 +30,6 @@ class Home_Acitvity : AppCompatActivity() {
         setContentView(binding.root)
         changeFragment(HomeFragment())
 
-
-
-
-
-
     // Observe incoming messages
 //        viewModel.messages.observe(this, Observer { message ->
 //            Toast.makeText(this, "$message", Toast.LENGTH_SHORT).show()

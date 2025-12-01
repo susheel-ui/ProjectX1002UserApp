@@ -1,6 +1,7 @@
 package com.example.ocx_1002_uapp.api.Services
 
 import com.example.ocx_1002_uapp.api.Entities.RegisterUserEntity
+import com.example.ocx_1002_uapp.api.Entities.entityAdd
 import com.example.project_b_security_gardapp.api.Entities.RequestsResultEntity
 import com.example.project_b_security_gardapp.api.Entities.User
 import com.example.project_b_security_gardapp.api.Entities.userLoginEntity
@@ -46,5 +47,16 @@ interface UserServices {
                 @Header("Authorization") token: String,
                 @Query("name") fileName:String
         ): Response<ResponseBody>
+
+        @GET("/api/user/feature-status")
+        suspend fun getAddBanner(
+                @Header("Authorization") token: String
+        ):Response<entityAdd>
+
+        @GET("/api/user/feature-status/{imageName}")
+        suspend fun getImageForBanner(
+                @Header("Authorization") token: String,
+                @Path("imageName") fileName:String
+        ):Response<ResponseBody>
 
 }

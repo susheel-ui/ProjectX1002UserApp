@@ -1,12 +1,12 @@
 package com.example.ocx_1002_uapp.Services
 
 import android.annotation.SuppressLint
-import android.app.*
-import android.content.BroadcastReceiver
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -24,13 +24,14 @@ import java.net.URI
 
 class WebSocketService : Service() {
 
+
     private var webSocketClient: WebSocketClient? = null
     private lateinit var stompClient: StompClient
     private val compositeDisposable = CompositeDisposable()
     private var ownerId: String? = null
     private var isStompConnected = false // ✅ Prevent duplicate subscriptions
 
-    private val serverUrl = "wss://gateguard.cloud/ws"
+    private val serverUrl = "wss://gateguard.cloud/ws/websocket"
 
     @SuppressLint("CheckResult", "UnspecifiedRegisterReceiverFlag")
     override fun onCreate() {
@@ -73,7 +74,7 @@ class WebSocketService : Service() {
     }
 
     /** ✅ Foreground Notification Setup */
-    private fun startAsForeground() {
+    private fun startAsForeground(){
         val channelId = "websocket_channel"
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -86,13 +87,13 @@ class WebSocketService : Service() {
             nm.createNotificationChannel(channel)
         }
 
-//        val notification = NotificationCompat.Builder(this, channelId)
-//            .setContentTitle("Gate Security")
-//            .setContentText("Listening for visitor updates...")
-//            .setSmallIcon(android.R.drawable.btn_radio)
-//            .build()
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle("Gate Security")
+            .setContentText("Welcome to SRS Services...")
+            .setSmallIcon(android.R.drawable.btn_radio)
+            .build()
 
-//        startForeground(1, notification)
+        startForeground(1, notification)
     }
 
     /** ✅ Simple WebSocket client connection */
@@ -178,7 +179,7 @@ class WebSocketService : Service() {
             val flatNo = jsonObject.optString("flatNumber")
             val status = jsonObject.optString("status")
 
-            Log.d("STOMP", "Guest: $guestName, Flat: $flatNo, Status: $status")
+//            Log.d("STOMP", "Guest: $guestName, Flat: $flatNo, Status: $status")
 
             NotificationHelper.showNotification(
                 this,

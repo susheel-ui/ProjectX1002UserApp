@@ -58,6 +58,12 @@ dependencies {
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    // optional, remove if unused
+    implementation ("ua.naiksoftware:stomp-websocket:1.6.6") // or the version you had
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0") // for OkHttp provider used by STOMP
+    implementation ("androidx.work:work-runtime-ktx:2.9.2")
 
     //retrofit
     implementation(libs.retrofit)

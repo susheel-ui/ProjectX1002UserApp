@@ -18,6 +18,7 @@ class VisitorListViewAdapter(
     private var visitorList: List<RequestsResultEntity>
 ) : Adapter<VisitorListViewAdapter.viewHolder>() {
     class viewHolder(val binding: VisitorListLayoutBinding) : ViewHolder(binding.root) {
+
         fun bind(guest: RequestsResultEntity) {
             binding.tvGuestName.text = guest.guestName
 //            val timeAgoTxt = getTimeAgo(guest.createdAt.toString())

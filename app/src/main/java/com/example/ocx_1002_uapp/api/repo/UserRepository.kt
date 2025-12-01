@@ -3,6 +3,7 @@ package com.example.ocx_1002_uapp.api.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ocx_1002_uapp.api.Entities.RegisterUserEntity
+import com.example.ocx_1002_uapp.api.Entities.entityAdd
 import com.example.ocx_1002_uapp.api.Services.UserServices
 import com.example.project_b_security_gardapp.api.Entities.RequestsResultEntity
 import com.example.project_b_security_gardapp.api.Entities.User
@@ -57,8 +58,15 @@ class UserRepository(private val userServices: UserServices) {
         return userServices.UpdateStatus(token = token,id=id.toInt(),status = status)
     }
     suspend fun getImage(photo: String,token: String):Response<ResponseBody>{
-
         return userServices.getPhoto(fileName = photo, token = token)
+    }
+
+    suspend fun getAddBanner(token:String): Response<entityAdd> {
+        return userServices.getAddBanner("Bearer ".plus(token))
+    }
+    suspend fun getImageForBanner(token: String,fileName:String):Response<ResponseBody>{
+        return userServices.getImageForBanner(token = "Bearer ".plus(token),fileName = fileName)
+
     }
 
 

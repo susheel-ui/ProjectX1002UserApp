@@ -28,8 +28,6 @@ class ViewRequestViewModel(val requestId:String):ViewModel(){
     private val _photoTwo = MutableLiveData<Bitmap>()
     val photoTwo:LiveData<Bitmap> = _photoTwo
 
-
-
     // 🔹 LiveData for loading state
     private val _loading = MutableLiveData<Boolean>(true)
     val loading: LiveData<Boolean> = _loading
@@ -40,6 +38,8 @@ class ViewRequestViewModel(val requestId:String):ViewModel(){
         val userService = apiInstance.create(UserServices::class.java)
         repo = UserRepository(userService)
     }
+
+
 
     fun getRequestById(id:String,token:String){
             viewModelScope.launch {

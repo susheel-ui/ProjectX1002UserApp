@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             if (token == null) {
                 startActivity(Intent(this, LoginActivity::class.java))  // we will redirect to LoginActivity
+                finish()
             } else {
                 val service = API.getInstance.create(UserServices::class.java)
                 val repo  = UserRepository(service)

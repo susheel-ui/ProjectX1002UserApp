@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:allowBackup="true"
@@ -18,19 +21,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OCX_1002_UApp"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="ForegroundServicePermission">
+        <activity
+            android:name=".Services_Contact_Activity"
+            android:exported="false" />
+
+        <service
+            android:name=".Services.WebSocketService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|connectedDevice"/>
+        <receiver
+            android:name=".Receivers.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".EditProfileDataActivity"
             android:exported="false" />
-        <!-- ✅ Our WebSocket Service -->
-        <service
-            android:name=".Services.WebSocketService"
-            android:exported="false"
-            android:foregroundServiceType="dataSync" />
-
         <activity
             android:name=".RequestActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -49,6 +66,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

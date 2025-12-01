@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Display.Mode
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ocx_1002_uapp.Services.WebSocketService
@@ -62,7 +63,6 @@ class LoginActivity : AppCompatActivity() {
                     val result = repo.login(jsonBody)
                     if (result.isSuccessful && result.code() == 200) {
                         Log.d(TAG, "onCreate: ${result.body()}")
-
                         val editor = sharedPreferences.edit()
                         editor.putString(
                             Keywords.USERTOKEN.toString(),
@@ -73,6 +73,17 @@ class LoginActivity : AppCompatActivity() {
                             result.body()!!.userId.toString()
                         )
                         editor.apply()
+                        
+                        CoroutineScope(Dispatchers.Main).launch {
+                            val intent = Intent(applicationContext, WebSocketService::class.java)
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                startForegroundService(intent)
+                            } else {
+                                startService(intent)
+                            }
+                            startActivity(Intent(applicationContext, Home_Acitvity::class.java))
+                            finish()
+                        }
 //                        val intent = Intent("OWNER_ID_CHANGED")
 //                        intent.putExtra("NEW_OWNER_ID",result.body()!!.userId.toString())
 //                        sendBroadcast(intent)
@@ -80,29 +91,26 @@ class LoginActivity : AppCompatActivity() {
 //                        val intent = Intent("OWNER_ID_CHANGED")
 //                        intent.putExtra("NEW_OWNER_ID", result.body()!!.userId.toString())
 //                        sendBroadcast(intent)
-
-
                     }
-                }.invokeOnCompletion {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val intent = Intent(applicationContext, WebSocketService::class.java)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            startForegroundService(intent)
-                        } else {
-                            startService(intent)
+                    else{
+                        Log.d(TAG, "onCreate: ${result.code()}")
+                        withContext(Dispatchers.Main) {
+                            binding.TvMessage.visibility = View.VISIBLE
+                            binding.TvMessage.text = "Invalid Mobile Or Password"
                         }
-                        startActivity(Intent(applicationContext, Home_Acitvity::class.java))
                     }
                 }
             } else {
                 binding.mobileNumber.error = "Please Enter Email"
                 binding.passwordET.error = "Please Enter Password"
             }
-//            startActivity(Intent(this,Home_Acitvity::class.java))
         }
 //Create Account Action
         binding.textCreateAccount.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+        binding.TvForgottenPsw.setOnClickListener {
+            startActivity(Intent(this,Services_Contact_Activity::class.java))
         }
     }
 }
