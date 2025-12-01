@@ -12,16 +12,21 @@ import android.view.Display.Mode
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.ocx_1002_uapp.Services.WebSocketService
 import com.example.ocx_1002_uapp.api.API
 import com.example.ocx_1002_uapp.api.Services.UserServices
 import com.example.ocx_1002_uapp.api.repo.UserRepository
 import com.example.ocx_1002_uapp.databinding.ActivityLoginBinding
+import com.example.ocx_1002_uapp.workers.ServiceCheckerWorker
 import com.example.project_b_security_gardapp.api.Entities.userLoginEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -81,6 +86,7 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 startService(intent)
                             }
+                            requestBatteryOptimizationPermission()
                             startActivity(Intent(applicationContext, Home_Acitvity::class.java))
                             finish()
                         }
@@ -113,4 +119,21 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this,Services_Contact_Activity::class.java))
         }
     }
+
+    private fun requestBatteryOptimizationPermission() {
+        val pm = getSystemService(Context.POWER_SERVICE) as android.os.PowerManager
+        val packageNameStr = packageName
+        try {
+            if (!pm.isIgnoringBatteryOptimizations(packageNameStr)) {
+                val intent = android.content.Intent(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+                intent.data = android.net.Uri.parse("package:$packageNameStr")
+                startActivity(intent)
+            }
+        } catch (e: Exception) {
+            // Fallback: open battery settings
+            val intent = android.content.Intent(android.provider.Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+            startActivity(intent)
+        }
+    }
+
 }
