@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     val jsonBody = userLoginEntity(mobile, password)
                     val result = repo.login(jsonBody)
-                    if (result.isSuccessful && result.code() == 200) {
+                    if (result.isSuccessful && result.code() == 200 && result.body()?.role == "ROLE_USER") {
                         Log.d(TAG, "onCreate: ${result.body()}")
                         val editor = sharedPreferences.edit()
                         editor.putString(
@@ -73,7 +73,6 @@ class LoginActivity : AppCompatActivity() {
                             result.body()!!.userId.toString()
                         )
                         editor.apply()
-                        
                         CoroutineScope(Dispatchers.Main).launch {
                             val intent = Intent(applicationContext, WebSocketService::class.java)
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -93,10 +92,24 @@ class LoginActivity : AppCompatActivity() {
 //                        sendBroadcast(intent)
                     }
                     else{
-                        Log.d(TAG, "onCreate: ${result.code()}")
-                        withContext(Dispatchers.Main) {
-                            binding.TvMessage.visibility = View.VISIBLE
-                            binding.TvMessage.text = "Invalid Mobile Or Password"
+                        if(result.code() == 403) {
+                            Log.d(TAG, "onCreate: ${result.code()}")
+                            withContext(Dispatchers.Main) {
+                                binding.TvMessage.visibility = View.VISIBLE
+                                binding.TvMessage.text = "Invalid Mobile Or Password"
+                            }
+                        }else if (result.code() == 502){
+                            Log.d(TAG, "onCreate: ${result.code()}")
+                            withContext(Dispatchers.Main) {
+                                binding.TvMessage.visibility = View.VISIBLE
+                                binding.TvMessage.text = "Server Error......"
+                            }
+                        }
+                        else{
+                            withContext(Dispatchers.Main) {
+                                binding.TvMessage.visibility = View.VISIBLE
+                                binding.TvMessage.text = "Invalid Mobile Or Password"
+                            }
                         }
                     }
                 }

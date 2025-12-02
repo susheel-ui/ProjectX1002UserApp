@@ -40,6 +40,8 @@ object NotificationHelper {
                 description = "Alerts for visitors"
                 enableLights(true)
                 enableVibration(true)
+                playLongRingtone(context)
+                setSound(soundUri,attributes)
 //                setSound(soundUri, attributes)   // Sound applied here
             }
 

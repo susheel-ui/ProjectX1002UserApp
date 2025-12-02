@@ -25,7 +25,6 @@
         <activity
             android:name=".Services_Contact_Activity"
             android:exported="false" />
-
         <service
             android:name=".Services.WebSocketService"
             android:enabled="true"
