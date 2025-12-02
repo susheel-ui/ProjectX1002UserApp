@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.ActivityCompat
@@ -46,7 +47,9 @@ object NotificationHelper {
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setSound(soundUri)
+
+
+        playLongRingtone(context)
 
         with(NotificationManagerCompat.from(context)) {
             if (ActivityCompat.checkSelfPermission(
@@ -66,4 +69,34 @@ object NotificationHelper {
             notify(id,builder.build())
         }
     }
+    fun playLongRingtone(context: Context) {
+        val mediaPlayer = MediaPlayer.create(context, R.raw.doorbell_223669)
+        mediaPlayer.isLooping = false   // true if you want looping
+        mediaPlayer.start()
+//mediaPlayer.setOnCompletionListener {
+//    mediaPlayer.start()
+//}
+        var playCount = 1    // currently playing 1st time
+
+        mediaPlayer.setOnCompletionListener {
+            if (playCount < 3) {
+                playCount++
+                mediaPlayer.start()   // play again
+            } else {
+                mediaPlayer.release() // stop completely after 3rd time
+            }
+        }
+
+
+        // Stop after 15 seconds
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            if (mediaPlayer.isPlaying) {
+//                mediaPlayer.stop()
+//            }
+//            mediaPlayer.start()
+//        }, 15000)
+    }
+
+
+
 }
