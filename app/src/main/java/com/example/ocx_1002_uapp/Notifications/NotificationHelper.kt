@@ -14,7 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.ocx_1002_uapp.R
 
 object NotificationHelper {
-    private const val CHANNEL_ID = "websocket_channel_v1"
+    private const val CHANNEL_ID = "visitor_alerts"
 
     fun showNotification(context: Context, id: Int, title: String, text: String) {
         // Correct Raw Sound URI
@@ -40,6 +40,13 @@ object NotificationHelper {
 
             nm.createNotificationChannel(channel)
         }
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setContentTitle(title)
+            .setContentText(title)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSound(soundUri)
 
         with(NotificationManagerCompat.from(context)) {
             if (ActivityCompat.checkSelfPermission(
@@ -56,7 +63,7 @@ object NotificationHelper {
                 // for ActivityCompat#requestPermissions for more details.
                 return
             }
-//            notify(id, notification)
+            notify(id,builder.build())
         }
     }
 }

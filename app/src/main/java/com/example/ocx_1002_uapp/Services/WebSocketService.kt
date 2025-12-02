@@ -223,7 +223,6 @@ class WebSocketService : Service() {
             val id = json.optString("id")
             val flatNo = json.optString("flatNumber")
             val status = json.optString("status")
-
             NotificationHelper.showNotification(this, id.hashCode(), "New Visitor: $guestName", "Flat: $flatNo | Status: $status")
         } catch (e: Exception) {
             Log.e("STOMP", "Failed to parse payload: ${e.message}")
