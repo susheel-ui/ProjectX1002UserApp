@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(Keywords.MYPREFS.toString(), Context.MODE_PRIVATE)
         // ✅ Ask notification permission (Android 13+)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
         }
 

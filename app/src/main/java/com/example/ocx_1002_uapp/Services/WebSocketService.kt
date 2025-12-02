@@ -229,8 +229,7 @@ class WebSocketService : Service() {
             Log.e("STOMP", "Failed to parse payload: ${e.message}")
         }
     }
-
-    private fun registerNetworkCallback() {
+    private fun registerNetworkCallback(){
         try {
             val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as android.net.ConnectivityManager
             connectivityCallback = ConnectivityCallback { connected ->
