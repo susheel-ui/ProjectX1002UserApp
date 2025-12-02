@@ -3,7 +3,9 @@ package com.example.ocx_1002_uapp.Services
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -12,6 +14,7 @@ import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.ocx_1002_uapp.MainActivity
 import com.example.ocx_1002_uapp.R
 
 object NotificationHelper {
@@ -41,12 +44,27 @@ object NotificationHelper {
 
             nm.createNotificationChannel(channel)
         }
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+
+        // 👉 Intent to open app when notification clicked
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Build Notification (NO setSound here; channel already controls it)
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.guests_icon)
             .setContentTitle(title)
-            .setContentText(title)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentText(text)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
 
 
         playLongRingtone(context)
@@ -66,7 +84,7 @@ object NotificationHelper {
                 // for ActivityCompat#requestPermissions for more details.
                 return
             }
-            notify(id,builder.build())
+            notify(id,notification)
         }
     }
     fun playLongRingtone(context: Context) {
