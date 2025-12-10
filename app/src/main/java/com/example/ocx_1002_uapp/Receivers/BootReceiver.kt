@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import com.example.ocx_1002_uapp.Keywords
 import com.example.ocx_1002_uapp.Services.WebSocketService
 
 class BootReceiver : BroadcastReceiver() {
@@ -12,6 +13,8 @@ class BootReceiver : BroadcastReceiver() {
         val action = intent.action ?: return
         if (action == Intent.ACTION_BOOT_COMPLETED || action == Intent.ACTION_REBOOT) {
             Log.d("BootReceiver", "Device booted -> starting WebSocketService")
+//            val prefs = context.getSharedPreferences(Keywords.MYPREFS.toString(), Context.MODE_PRIVATE)
+//            prefs.edit().clear().apply()
             val svc = Intent(context, WebSocketService::class.java)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 context.startForegroundService(svc)

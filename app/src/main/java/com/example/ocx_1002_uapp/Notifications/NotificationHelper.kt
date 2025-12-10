@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
@@ -64,6 +65,9 @@ object NotificationHelper {
             .setContentText(text)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+//            .setSound(soundUri,AudioManager.STREAM_ALARM)
+//            .setSound(soundUri, AudioManager.STREAM_ALARM)
+//            .setSound(soundUri, AudioManager.STREAM_ALARM)
             .build()
 
 
@@ -75,13 +79,7 @@ object NotificationHelper {
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+
                 return
             }
             notify(id,notification)
@@ -91,11 +89,7 @@ object NotificationHelper {
         val mediaPlayer = MediaPlayer.create(context, R.raw.doorbell_223669)
         mediaPlayer.isLooping = false   // true if you want looping
         mediaPlayer.start()
-//mediaPlayer.setOnCompletionListener {
-//    mediaPlayer.start()
-//}
         var playCount = 1    // currently playing 1st time
-
         mediaPlayer.setOnCompletionListener {
             if (playCount < 3) {
                 playCount++
@@ -105,16 +99,5 @@ object NotificationHelper {
             }
         }
 
-
-        // Stop after 15 seconds
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            if (mediaPlayer.isPlaying) {
-//                mediaPlayer.stop()
-//            }
-//            mediaPlayer.start()
-//        }, 15000)
     }
-
-
-
 }

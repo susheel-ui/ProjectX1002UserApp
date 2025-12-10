@@ -8,11 +8,14 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.ocx_1002_uapp.Fragments.HistoryFragment
 import com.example.ocx_1002_uapp.Fragments.HomeFragment
 import com.example.ocx_1002_uapp.Fragments.UserFragment
+import com.example.ocx_1002_uapp.Services.NotificationHelper
 import com.example.ocx_1002_uapp.Services.WebSocketService
 
 import com.example.ocx_1002_uapp.databinding.ActivityHomeAcitvityBinding
@@ -28,8 +31,14 @@ class Home_Acitvity : AppCompatActivity() {
         binding = ActivityHomeAcitvityBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root)
+        { root, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            root.setPadding(insets.left,0, insets.right, 0)
+            windowInsets
+        }
         changeFragment(HomeFragment())
-
+//        NotificationHelper.showNotification(this, 1, "Test", "Test")
     // Observe incoming messages
 //        viewModel.messages.observe(this, Observer { message ->
 //            Toast.makeText(this, "$message", Toast.LENGTH_SHORT).show()

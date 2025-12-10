@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -96,8 +97,8 @@ class WebSocketService : Service() {
         }
 
         val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Gate Security")
-            .setContentText("Listening for visitors…")
+            .setContentTitle("SRS Security")
+            .setContentText("Always On. Always Here 24/7")
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setOngoing(true)
             .setOnlyAlertOnce(true)

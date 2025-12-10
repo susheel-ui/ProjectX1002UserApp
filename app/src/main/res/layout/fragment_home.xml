@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.HomeFragment"
-    >
+    tools:context=".Fragments.HomeFragment">
 
+    <!-- Header -->
     <androidx.cardview.widget.CardView
         android:id="@+id/header_title"
         android:layout_width="match_parent"
@@ -14,79 +14,23 @@
         android:layout_marginTop="-20dp"
         android:backgroundTint="@color/Secondary_Color"
         app:cardCornerRadius="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@string/app_name"
-                android:textColor="@color/text_Primary_color"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </TextView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/app_name"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_Primary_color"
+            android:layout_gravity="center_vertical"/>
     </androidx.cardview.widget.CardView>
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/InfoCard"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginTop="-40dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:backgroundTint="@color/Primary_Color"-->
-<!--        app:cardCornerRadius="30dp"-->
-<!--        app:cardElevation="15dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/header_title">-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/societyNameTV"-->
-<!--                android:layout_width="150dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:paddingBottom="20dp"-->
-<!--                android:text="Loading.."-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="36dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/flateNumber"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="20dp"-->
-<!--                android:text="Loading."-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="36sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@id/societyNameTV" />-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    </androidx.cardview.widget.CardView>-->
+    <!-- Info Card -->
     <com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/InfoCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,198 +39,175 @@
         app:cardBackgroundColor="@color/Primary_Color"
         app:cardCornerRadius="24dp"
         app:cardElevation="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_title">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="24dp">
 
-            <!-- Decorative Background Icon (Optional)
-                 Adds depth without clutter. Tint it white with low alpha. -->
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:alpha="0.1"
-                android:rotation="-15"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@android:color/white"
-                tools:ignore="ContentDescription" />
-
-            <!-- Section 1: Society Info -->
             <TextView
-                android:id="@+id/lbl_society"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/lbl_society"
                 android:text="SOCIETY"
-                android:textColor="#CCFFFFFF"
                 android:textSize="12sp"
-                android:letterSpacing="0.1"
                 android:textStyle="bold"
+                android:textColor="#CCFFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/societyNameTV"
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                tools:text="Galaxy Heights"
                 android:textColor="@android:color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/barrier_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lbl_society" />
 
-            <!-- Vertical Barrier to prevent text collision if Flat No is long -->
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier_vertical"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:barrierDirection="start"
-                app:constraint_referenced_ids="flateNumber,lbl_flat" />
-
-            <!-- Section 2: Flat Number -->
-            <!-- Aligned to End (Right) -->
-            <TextView
                 android:id="@+id/lbl_flat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="FLAT NO."
-                android:textColor="#CCFFFFFF"
                 android:textSize="12sp"
-                android:letterSpacing="0.1"
                 android:textStyle="bold"
+                android:textColor="#CCFFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/flateNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                tools:text="A-402"
-                android:textColor="@android:color/white"
+
+                android:id="@+id/flateNumber"
                 android:textSize="28sp"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:text="A-402"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lbl_flat" />
+                app:layout_constraintTop_toBottomOf="@id/lbl_flat"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/ExtraContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Scroll part -->
+    <ScrollView
+        android:id="@+id/HomeScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/InfoCard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/InfoCard">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnComplain"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-             app:cardCornerRadius="30dp"
-            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Buttons container -->
             <LinearLayout
+                android:id="@+id/ExtraContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/flat_illustration_complains"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Complains"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnComplain"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/flat_illustration_complains" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Complains"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnServices"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/services_illustrations" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Services"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnServices"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-           app:cardCornerRadius="30dp"
-            >
+            <!-- Title Recent Guests -->
+            <TextView
+                android:id="@+id/TVRecentGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Guests"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:padding="16dp"/>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecentGuest"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/services_illustrations"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Services"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                android:layout_height="wrap_content"
+                android:padding="10dp"/>
 
+            <ViewFlipper
+                android:id="@+id/viewFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:autoStart="true"
+                android:flipInterval="3000"
+                android:layout_margin="16dp"/>
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/TVRecentGuest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Recent Guests"
-        android:textStyle="bold"
-        android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="@id/InfoCard"
-        app:layout_constraintTop_toBottomOf="@id/ExtraContainer" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecentGuest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-       android:layout_marginBottom="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TVRecentGuest" />
-    <ViewFlipper
-        android:id="@+id/viewFlipper"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:autoStart="true"
-        android:flipInterval="3000"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RecentGuest"
-        />
-
-
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

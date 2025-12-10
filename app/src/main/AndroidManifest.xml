@@ -46,17 +46,17 @@
             android:name=".EditProfileDataActivity"
             android:exported="false" />
         <activity
-            android:name=".RequestActivity"
-            android:exported="true" />
-        <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".Home_Acitvity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">

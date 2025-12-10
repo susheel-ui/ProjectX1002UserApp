@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,44 +9,55 @@
     android:background="@color/white"
     tools:context=".RequestActivity">
 
+
+    <!-- TOP TOOLBAR -->
     <include
         android:id="@+id/toolbar"
+        layout="@layout/top_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/top_app_bar"
         android:layout_marginTop="-25dp"
         app:layout_constraintTop_toTopOf="parent"
-
         app:navigationIconTint="@color/white"
         app:title="Request Details"
         app:titleTextColor="@color/white" />
 
+
+    <!-- SCROLL AREA (Safe Constraint + NestedScrollView) -->
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/nestedScroll"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/button_bar"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
+
+            <!-- CARD: Request Info -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
+                app:cardElevation="5dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/white">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp">
 
+
+                    <!-- STATUS CHIP -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipStatus"
                         android:layout_width="wrap_content"
@@ -55,8 +67,11 @@
                         app:chipBackgroundColor="@color/Primary_Color"
                         app:chipCornerRadius="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSocietyValue" />
 
+
+                    <!-- REQUEST NAME -->
                     <TextView
                         android:id="@+id/tvRequestNameLabel"
                         android:layout_width="wrap_content"
@@ -72,24 +87,26 @@
                         android:id="@+id/tvRequestNameValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:text="loading"
-                        android:textColor="@color/text_Primary_color"
                         android:textSize="18sp"
+                        android:textColor="@color/text_Primary_color"
                         android:textStyle="bold"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvRequestNameLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvRequestNameLabel" />
+                        app:layout_constraintStart_toEndOf="@id/tvRequestNameLabel"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
+
+                    <!-- MOBILE -->
                     <TextView
                         android:id="@+id/tvMobileNumberLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
                         android:text="Mobile:"
-                        android:textColor="@color/gray"
                         android:textSize="16sp"
                         android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvRequestNameLabel" />
 
@@ -97,23 +114,25 @@
                         android:id="@+id/tvMobileNumberValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:text="loading"
-                        android:textColor="@color/gray"
                         android:textSize="16sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvMobileNumberLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvMobileNumberLabel" />
+                        app:layout_constraintStart_toEndOf="@id/tvMobileNumberLabel"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
+
+                    <!-- DESCRIPTION -->
                     <TextView
                         android:id="@+id/tvDescriptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="Description:"
-                        android:textColor="@color/gray"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvMobileNumberLabel" />
 
@@ -121,47 +140,51 @@
                         android:id="@+id/tvDescriptionValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:text="loading"
-                        android:textColor="@color/gray"
                         android:textSize="15sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvDescriptionLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvDescriptionLabel" />
+                        app:layout_constraintStart_toEndOf="@id/tvDescriptionLabel"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
+
+                    <!-- OWNER NAME -->
                     <TextView
                         android:id="@+id/tvOwnerNameLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="Owner Name:"
-                        android:textColor="@color/gray"
-                        android:textSize="15sp"
                         android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvDescriptionValue" />
+                        app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel" />
 
                     <TextView
                         android:id="@+id/tvOwnerNameValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Loading"
-                        android:textColor="@color/gray"
+                        android:text="loading"
                         android:textSize="15sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvOwnerNameLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvOwnerNameLabel" />
+                        app:layout_constraintStart_toEndOf="@id/tvOwnerNameLabel"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
+
+                    <!-- SOCIETY -->
                     <TextView
                         android:id="@+id/tvSocietyLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="Society:"
-                        android:textColor="@color/gray"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvOwnerNameLabel" />
 
@@ -169,28 +192,33 @@
                         android:id="@+id/tvSocietyValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:text="loading"
-                        android:textColor="@color/gray"
                         android:textSize="15sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvSocietyLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvSocietyLabel" />
+                        app:layout_constraintStart_toEndOf="@id/tvSocietyLabel"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- ATTACHED IMAGES TITLE -->
             <TextView
+                android:id="@+id/tvAttachedImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="8dp"
                 android:text="Attached Images:"
-                android:textColor="@color/text_Primary_color"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/text_Primary_color"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"/>
 
+
+            <!-- IMAGES ROW -->
             <LinearLayout
                 android:id="@+id/rvImages"
                 android:layout_width="match_parent"
@@ -200,8 +228,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="150dp"
-                    android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:layout_margin="8dp"
                     app:cardCornerRadius="12dp">
 
                     <ImageView
@@ -215,8 +243,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="150dp"
-                    android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:layout_margin="8dp"
                     app:cardCornerRadius="12dp">
 
                     <ImageView
@@ -232,14 +260,17 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+
+
+    <!-- BOTTOM FIXED BUTTON BAR -->
     <LinearLayout
         android:id="@+id/button_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:elevation="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        android:elevation="8dp"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -247,21 +278,22 @@
             android:id="@+id/btnReject"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/red"
+            android:layout_marginEnd="8dp"
             android:text="@string/reject"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAccept"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
+            android:layout_marginStart="8dp"
             android:text="@string/accept"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:backgroundTint="@color/green" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

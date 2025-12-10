@@ -56,11 +56,11 @@ class LoginActivity : AppCompatActivity() {
 
 // logIn button Action
         binding.buttonLogin.setOnClickListener {
-            if (binding.mobileNumber.text.toString()
+            if (binding.ETmobileNumber.text.toString()
                     .isNotEmpty() && binding.passwordET.text.toString().isNotEmpty()
             ) {
 
-                val mobile = "+91".plus(binding.mobileNumber.text.toString())
+                val mobile = "+91".plus(binding.ETmobileNumber.text.toString())
                 val password = binding.passwordET.text.toString()
 
                 CoroutineScope(Dispatchers.IO).launch {
