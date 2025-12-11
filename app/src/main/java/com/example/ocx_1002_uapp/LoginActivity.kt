@@ -12,9 +12,6 @@ import android.view.Display.Mode
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.example.ocx_1002_uapp.Services.WebSocketService
 import com.example.ocx_1002_uapp.api.API
 import com.example.ocx_1002_uapp.api.Services.UserServices

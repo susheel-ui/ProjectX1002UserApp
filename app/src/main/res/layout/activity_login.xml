@@ -97,8 +97,8 @@
                         android:id="@+id/ETmobileNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:hint="Mobile Number"
+                        android:inputType="text"
+                        android:hint="@string/mobile_number"
                         android:textColorHint="@color/black"
                         android:padding="12dp" />
                 </com.google.android.material.textfield.TextInputLayout>

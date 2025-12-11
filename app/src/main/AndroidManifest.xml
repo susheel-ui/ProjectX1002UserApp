@@ -32,13 +32,17 @@
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="dataSync"/>
+
+        <activity android:name=".RequestActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".Receivers.BootReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.REBOOT"/>
             </intent-filter>
         </receiver>
 
