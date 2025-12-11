@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ocx_1002_uapp.EditProfileDataActivity
 import com.example.ocx_1002_uapp.Keywords
 import com.example.ocx_1002_uapp.LoginActivity
-import com.example.ocx_1002_uapp.Services.WebSocketService
 import com.example.ocx_1002_uapp.ViewModels.Fragments.UserFragment.UserViewModel
 import com.example.ocx_1002_uapp.ViewModels.Fragments.UserFragment.UserViewModelFactory
 import com.example.ocx_1002_uapp.api.API
@@ -68,8 +67,6 @@ class UserFragment : Fragment() {
             editor.clear()
             editor.apply()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
-            val intent = Intent(requireContext(), WebSocketService::class.java)
-            activity?.stopService(intent)
             activity?.finish()
         }
         userViewModel.user.observe(viewLifecycleOwner) { user ->

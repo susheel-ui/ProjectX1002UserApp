@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -16,9 +17,9 @@ import com.example.ocx_1002_uapp.Fragments.HistoryFragment
 import com.example.ocx_1002_uapp.Fragments.HomeFragment
 import com.example.ocx_1002_uapp.Fragments.UserFragment
 import com.example.ocx_1002_uapp.Services.NotificationHelper
-import com.example.ocx_1002_uapp.Services.WebSocketService
 
 import com.example.ocx_1002_uapp.databinding.ActivityHomeAcitvityBinding
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -43,6 +44,14 @@ class Home_Acitvity : AppCompatActivity() {
 //        viewModel.messages.observe(this, Observer { message ->
 //            Toast.makeText(this, "$message", Toast.LENGTH_SHORT).show()
 //        })
+
+//        FirebaseMessaging.getInstance().token
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    val token = task.result
+//                    Log.d("FCM", "Token: $token")
+//                }
+//            }
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.btm_nav_home -> changeFragment(HomeFragment())

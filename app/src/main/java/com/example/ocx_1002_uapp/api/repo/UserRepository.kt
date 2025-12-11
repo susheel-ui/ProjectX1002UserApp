@@ -2,6 +2,7 @@ package com.example.ocx_1002_uapp.api.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.ocx_1002_uapp.api.Entities.FcmTokenEntity
 import com.example.ocx_1002_uapp.api.Entities.RegisterUserEntity
 import com.example.ocx_1002_uapp.api.Entities.entityAdd
 import com.example.ocx_1002_uapp.api.Services.UserServices
@@ -67,6 +68,9 @@ class UserRepository(private val userServices: UserServices) {
     suspend fun getImageForBanner(token: String,fileName:String):Response<ResponseBody>{
         return userServices.getImageForBanner(token = "Bearer ".plus(token),fileName = fileName)
 
+    }
+    suspend fun save_Fcm_token(fcmToken:FcmTokenEntity,authToken:String): Response<ResponseBody> {
+       return userServices.SaveFCMToken(token = "Bearer ".plus(authToken),fcmToken)
     }
 
 

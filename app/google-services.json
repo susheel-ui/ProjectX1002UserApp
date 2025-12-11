@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544187356216",
+    "project_id": "srsservices-ea0c3",
+    "storage_bucket": "srsservices-ea0c3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544187356216:android:68d3d2d9d7b58fb67e02cd",
+        "android_client_info": {
+          "package_name": "com.example.ocx_1002_uapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArZCQAEdXnD-nmbJ3pblPbPk_FMKqNfeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

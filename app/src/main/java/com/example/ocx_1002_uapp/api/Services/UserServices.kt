@@ -1,11 +1,13 @@
 package com.example.ocx_1002_uapp.api.Services
 
+import com.example.ocx_1002_uapp.api.Entities.FcmTokenEntity
 import com.example.ocx_1002_uapp.api.Entities.RegisterUserEntity
 import com.example.ocx_1002_uapp.api.Entities.entityAdd
 import com.example.project_b_security_gardapp.api.Entities.RequestsResultEntity
 import com.example.project_b_security_gardapp.api.Entities.User
 import com.example.project_b_security_gardapp.api.Entities.userLoginEntity
 import com.example.project_b_security_gardapp.api.Responses.UserLoginResponse
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Param
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -58,5 +60,11 @@ interface UserServices {
                 @Header("Authorization") token: String,
                 @Path("imageName") fileName:String
         ):Response<ResponseBody>
+
+        @POST("/api/user/save-token")
+        suspend fun SaveFCMToken(
+                @Header("Authorization") token: String,
+                @Body fcmToken: FcmTokenEntity
+        ): Response<ResponseBody>
 
 }

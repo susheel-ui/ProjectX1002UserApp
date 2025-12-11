@@ -8,25 +8,20 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Display.Mode
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import com.example.ocx_1002_uapp.Services.WebSocketService
 import com.example.ocx_1002_uapp.api.API
+import com.example.ocx_1002_uapp.api.Entities.FcmTokenEntity
 import com.example.ocx_1002_uapp.api.Services.UserServices
 import com.example.ocx_1002_uapp.api.repo.UserRepository
 import com.example.ocx_1002_uapp.databinding.ActivityLoginBinding
-import com.example.ocx_1002_uapp.workers.ServiceCheckerWorker
 import com.example.project_b_security_gardapp.api.Entities.userLoginEntity
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -78,15 +73,29 @@ class LoginActivity : AppCompatActivity() {
                             result.body()!!.userId.toString()
                         )
                         editor.apply()
-                        
                         CoroutineScope(Dispatchers.Main).launch {
-                            val intent = Intent(applicationContext, WebSocketService::class.java)
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                startForegroundService(intent)
-                            } else {
-                                startService(intent)
-                            }
-                            requestBatteryOptimizationPermission()
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                startForegroundService(intent)
+//                            } else {
+//                                startService(intent)
+//                            }
+//                            requestBatteryOptimizationPermission()
+                            FirebaseMessaging.getInstance().token
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        val token = task.result
+                                        Log.d("FCM", "Token: $token")
+                                        CoroutineScope(Dispatchers.IO).launch {
+                                            val fcmtoken = FcmTokenEntity(token)
+                                           val res =  repo.save_Fcm_token(fcmtoken,result.body()!!.token.toString())
+                                            if(res.isSuccessful && res.code() == 200){
+                                                Log.d(TAG, "onCreate: FCM Token Saved")
+                                            }else{
+                                                Log.d(TAG, "onCreate: ${res.code()} ")
+                                            }
+                                        }
+                                    }
+                                }
                             startActivity(Intent(applicationContext, Home_Acitvity::class.java))
                             finish()
                         }

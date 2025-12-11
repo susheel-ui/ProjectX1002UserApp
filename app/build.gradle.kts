@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 
@@ -57,13 +58,17 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.firebase.messaging)
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
 
     // optional, remove if unused
 //    implementation ("ua.naiksoftware:stomp-websocket:1.6.6") //or the version you had
 //    implementation ("com.squareup.okhttp3:okhttp:4.11.0") //for OkHttp provider used by STOMP
-    implementation ("androidx.work:work-runtime-ktx:2.11.0")
+    implementation(libs.firebase.bom.v3351)
+
+    //fiebase
+    implementation(platform(libs.firebase.bom))
 
     //retrofit
     implementation(libs.retrofit)
